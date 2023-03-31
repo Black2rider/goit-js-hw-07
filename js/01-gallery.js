@@ -30,14 +30,19 @@ function onClick(evt) {
   const instance = basicLightbox.create
   (`<img src="${target.dataset.source}" width="800" 
   height="600">`, {
+    onShow: () => {
+      document.addEventListener('keydown', escKeyPress);
+    },
     onClose: () => {
-      document.addEventListener("keydown", Keys)}});
-      function Keys(evt) {
-        if (evt.key === "Escape") {
-            instance.close();
-        }
-      }
-  instance.show();  
+      document.removeEventListener('keydown', escKeyPress);
+    }
+  });
+  function escKeyPress(evt) {
+    if (evt.key === "Escape") {
+        instance.close();
+    }
+  }
+    instance.show();
   }
 }
 

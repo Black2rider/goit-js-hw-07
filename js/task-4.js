@@ -6,18 +6,21 @@
 // Якщо користувач заповнив усі поля і відправив форму, збери значення полів в об'єкт з двома властивостями, де ключ — це ім'я інпутів, а значення — відповідні значення цих інпутів, очищені від пробілів по краях. Для доступу до елементів форми використовуй властивість elements.
 // При сабміті форми виведи об'єкт із введеними даними в консоль і очисти значення полів форми методом reset.
 
-const button = document.querySelector('button');
-(button,
-  addEventListener('submit', event => {
+const form = document.querySelector('.login-form');
+form.addEventListener('submit', event => {
     event.preventDefault();
-    const form = event.target;
-    const email = form.elements.email.value;
-    const password = form.elements.password.value;
+    const value = event.target;
+    const email = value.elements.email.value.trim();
+    const password = value.elements.password.value.trim();
 
-    if (email !== '' || password !== '') {
-      console.log(`Email : ${email.trim()}, Password : ${password.trim()}`);
-      form.reset();
+    if (email !== '' && password !== '') {
+      const user = {
+        email : email,
+        password : password,
+      }
+      console.log(user);
     } else {
       alert('All form fields must be filled in');
     }
-  }));
+    value.reset();
+  });

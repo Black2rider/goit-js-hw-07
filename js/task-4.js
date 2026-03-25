@@ -19,8 +19,8 @@ form.addEventListener('submit', event => {
         password : password,
       }
       console.log(user);
+    value.reset();
     } else {
       alert('All form fields must be filled in');
     }
-    value.reset();
   });
